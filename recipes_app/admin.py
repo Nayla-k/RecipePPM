@@ -5,6 +5,7 @@ from . import models
 
 
 admin.site.register(models.Recipe)
+
 class RecipeAdmin(admin.ModelAdmin):
     list_display = (
         "title",

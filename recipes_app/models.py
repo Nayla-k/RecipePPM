@@ -42,3 +42,14 @@ class Recipe(models.Model):
 
     def __str__(self):
         return str(self.title)
+    
+class AddRecipe(models.Model) :
+    """
+        model to add recipe
+    """
+    model: Recipe
+    success_url = '/recipes/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddRecipe, self).form_valid(form)
