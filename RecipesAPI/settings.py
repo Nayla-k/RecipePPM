@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-btb36&2$vrc&vx3w!^+5bqq9!7)us7#1zl&8b=m3z9_vupnew(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True #dovrei modificarla affinchè errori di backend non vengano visti dallo user
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -61,6 +61,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -164,6 +166,7 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
