@@ -1,4 +1,4 @@
-{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block extra_css %}
 
-    <link rel="stylesheet" href="{% static '/css/base.css' %}">
+    <link rel="stylesheet" href="../../static/css/base.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% endblock %}
 
@@ -33,29 +33,28 @@
               <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Recipes</a>
+              <a class="nav-link {% if url_name == 'arecipes' %}active{% endif %}" href="{% url 'recipes' %}">Recipes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link {% if url_name == 'add_recipe' %}active{% endif %}" href="{% url 'add_recipe' %}">New</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link {% if url_name == 'account_logout' %}active{% endif %}" href="{% url 'account_logout' %}">Logout</a>
+              <a class="nav-link {% if url_name == 'accounts_logout' %}active{% endif %}" href="/accounts/logout/">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link {% if url_name == 'account_signup' %}active{% endif %} " href="{% url 'account_signup' %}">Register</a>
+              <a class="nav-link {% if url_name == 'accounts_signup' %}active{% endif %} " href="/accounts/signup/">Register</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if url_name == 'account_login' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
+              <a class="nav-link {% if url_name == 'accounts_login' %}active{% endif %}" href="/accounts/login/">Login</a>
             </li>
             {% endif %}
             
-            
           </ul>
           <!-- Form for search bar -->
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex" role="search" method="GET" action="{% url 'recipes' %}">
+            <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
@@ -69,7 +68,6 @@
       {% for message in messages %}
         <div class="alert alert-{{ message.tags}}">{{ message }}</div>
       {% endfor %}
-    {% else %}
     {% endif %}
     {% block content %}
     

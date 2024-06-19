@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'recipes_app',
 
     #other
-    'crispy_forms','crispy_bootstrap5',
+    'crispy_forms','crispy_bootstrap5','djrichtextfield'
 ]
 
 SITE_ID = 1
@@ -73,7 +73,10 @@ ROOT_URLCONF = 'RecipesAPI.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS' : [
+          os.path.join(BASE_DIR, 'templates'),
+          os.path.join(BASE_DIR, 'templates', 'allauth')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,7 +163,7 @@ LOGIN_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
