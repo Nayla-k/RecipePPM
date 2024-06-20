@@ -33,10 +33,10 @@
               <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if url_name == 'arecipes' %}active{% endif %}" href="{% url 'recipes' %}">Recipes</a>
+              <a class="nav-link {% if url_name == 'recipes' %}active{% endif %}" href="{% url 'recipes' %}">Recipes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if url_name == 'add_recipe' %}active{% endif %}" href="{% url 'add_recipe' %}">New</a>
+              <a class="nav-link {% if request.resolver_match.url_name == 'add_recipe' %}active{% endif %}" href="{% url 'user-login' %}?next=/add_recipe/">New</a>
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
